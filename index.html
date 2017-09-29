@@ -1,0 +1,123 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+
+            $("#getalltweets").click(function(){
+                $.ajax({url: "http://localhost:8081/process_get_all_tweets", success: function(result){
+                    $("#alltweets").text(JSON.stringify(result));
+                }});
+                return false;
+            });
+});
+
+$(document).ready(function(){
+
+            $("#getallusers").click(function(){
+                $.ajax({url: "http://localhost:8081/process_get_all_twitter_users", success: function(result){
+                    $("#allusers").text(JSON.stringify(result));
+                }});
+                return false;
+            });
+});
+
+
+$(document).ready(function(){
+
+            $("#getallexternallinks").click(function(){
+                $.ajax({url: "http://localhost:8081/process_get_all_external_links", success: function(result){
+                    $("#allexternallinks").text(JSON.stringify(result));
+                }});
+                return false;
+            });
+});
+
+$(document).ready(function(){
+
+            $("#get_tweet_details").click(function(){
+				var tweet_id = $("#tweet_id").val();
+                $.ajax({url: "http://localhost:8081/process_get_details_about_tweet?tweet_id="+tweet_id, success: function(result){
+                    $("#detailsaboutatweet").text(JSON.stringify(result));
+                }});
+                return false;
+            });
+});
+
+
+$(document).ready(function(){
+
+            $("#get_user_details").click(function(){
+				var user_name = $("#user_name").val();
+                $.ajax({url: "http://localhost:8081/process_get_details_about_twitter_user?user_name="+user_name, success: function(result){
+                    $("#detailsaboutauser").text(JSON.stringify(result));
+                }});
+                return false;
+            });
+});
+
+</script>
+<body>
+
+
+Get All Tweets:
+
+<button id="getalltweets" href="/process_get_all_tweets">Get ALL TWEETS</button>
+<div id="alltweets"></div>
+
+
+Get All Users:
+
+<button id="getallusers" href="/process_get_all_twitter_users">Get ALL USERS</button>
+<div id="allusers"></div>
+
+Get All External Links:
+
+<button id="getallexternallinks" href="/process_get_all_external_links">Get ALL EXTERNAL LINKS</button>
+<div id="allexternallinks"></div>
+
+
+Get Details about a given tweet:
+
+<p>Tweet id: </p> <input id="tweet_id" type="text">
+<button type="submit" id="get_tweet_details">Get Tweet details</button>
+<div id="detailsaboutatweet"></div>
+
+
+Get Details about a given twitter User:
+
+<p>User Name: </p> <input id="user_name" type="text">
+<button type="submit" id="get_user_details">Get User details</button>
+<div id="detailsaboutauser"></div>
+
+
+
+<!--
+
+
+Get ALL EXTERNAL LINKS
+<form action="http://127.0.0.1:8081/process_get_all_external_links" method="GET"> 
+ <input type="submit" value="Submit">
+ </form>
+<br><br>
+
+ 
+
+ <br><br>
+ Get DETAILS ABOUT A GIVEN TWEET<br>
+<form action="http://127.0.0.1:8081/process_get_details_about_tweet" method="GET"> 
+Tweet ID: <input type="text" name="tweet_name"><br>
+ <input type="submit" value="Submit">
+</form>
+
+<br><br>
+ Get DETAILS ABOUT A GIVEN USER<br>
+<form action="http://127.0.0.1:8081/process_get_details_about_twitter_user" method="GET"> 
+USER SCREEN NAME: <input type="text" name="screen_name"><br>
+ <input type="submit" value="Submit">
+</form>
+
+<div id="demo">Nothing</div>
+-->
+</body>
+</html>
